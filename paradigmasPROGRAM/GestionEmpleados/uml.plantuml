@@ -1,0 +1,45 @@
+@startuml uml
+!define ABSTRACT abstract
+!define INTERFACE interface
+
+class Empleados {
+  - nombre: String
+  - salario: Double
+  {method} + Empleados(nombre: String, salario: Double)
+  {method} + getNombre(): String
+  {method} + setNombre(nombre: String): void
+  {method} + getSalario(): Double
+  {method} + setSalario(salario: Double): void
+  {method} + calcularSalario(): void {ABSTRACT}
+}
+
+class EmpleadoPorHora {
+  - horasTrabajadas: int
+  {method} + EmpleadoPorHora(nombre: String, salario: Double, horasTrabajadas: int)
+  {method} + getHorasTrabajadas(): int
+  {method} + setHorasTrabajadas(horasTrabajadas: int): void
+  {method} + calcularSalario(): void
+}
+
+class EmpleadoAsalariado {
+  - diasTrabajados: int
+  {method} + EmpleadoAsalariado(nombre: String, salario: Double, diasTrabajados: int)
+  {method} + getDiasTrabajados(): int
+  {method} + setDiasTrabajados(diasTrabajados: int): void
+  {method} + calcularSalario(): void
+  {method} + calcularBonificacion(): void
+}
+
+class SalarioInvalidoException {
+  {method} + SalarioInvalidoException(mensaje: String)
+}
+
+interface Bonificable {
+  {method} + calcularBonificacion(): void
+}
+
+Empleados <|-- EmpleadoPorHora
+Empleados <|-- EmpleadoAsalariado
+Empleados o-- Bonificable
+
+@enduml
