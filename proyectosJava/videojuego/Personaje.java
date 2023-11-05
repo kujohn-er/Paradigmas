@@ -35,6 +35,9 @@ public abstract class Personaje {
         }
     }
 }
+interface Habilidades<T> {
+    void usarHabilidad(T habilidad);
+}
 
 interface HabilidadesMagicas{
     void habilidadEspecial();

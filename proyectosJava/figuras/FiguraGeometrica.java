@@ -6,6 +6,28 @@ interface calculos2d{
 
 }
 
+class FiguraGenerica<T extends calculos2d> {
+    private T figura;
+
+    public FiguraGenerica(T figura) {
+        this.figura = figura;
+    }
+
+    public String obtenerTipoFigura() {
+        if (figura instanceof FiguraGeometrica) {
+            return ((FiguraGeometrica) figura).getNombre();
+        } else {
+            return "sin datos sobre el tipo de figura";
+        }
+    }
+
+    public void mostrarCaracteristicas() {
+        System.out.println("Tipo de figura: " + obtenerTipoFigura());
+        System.out.println("Área: " + figura.calcularArea());
+        System.out.println("Perímetro: " + figura.calcularPerimetro());
+    }
+}
+
 abstract class FiguraGeometrica implements calculos2d {
     String nombre;
 

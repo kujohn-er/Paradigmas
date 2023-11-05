@@ -4,35 +4,19 @@ package Paleteria;
 interface aditivo{
     void ponerAditivo();
 }
-public class Paleta {
-    String sabor;
-    Double precio;
+class Paleta<T> {
+    protected T sabor;
+    protected double precio;
 
-    public Paleta(String sabor, Double precio) {
+    public Paleta(T sabor, double precio) {
         this.sabor = sabor;
-        this.precio = precio;
-    }
-
-    public String getSabor() {
-        return sabor;
-    }
-
-    public void setSabor(String sabor) {
-        this.sabor = sabor;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
         this.precio = precio;
     }
     
     public void mostrarInformacion() {
         System.out.println("////////////////////////////////");
-        System.out.println("Sabor: " + getSabor());
-        System.out.println("Precio: " + getPrecio());
+        System.out.println("Sabor: " + sabor);
+        System.out.println("Precio: " + precio);
     }
 
 }
