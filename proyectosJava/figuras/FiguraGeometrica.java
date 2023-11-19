@@ -7,7 +7,7 @@ interface calculos2d{
 }
 
 class FiguraGenerica<T extends calculos2d> {
-    private T figura;
+    public T figura;
 
     public FiguraGenerica(T figura) {
         this.figura = figura;
@@ -23,28 +23,19 @@ class FiguraGenerica<T extends calculos2d> {
 
     public void mostrarCaracteristicas() {
         System.out.println("Tipo de figura: " + obtenerTipoFigura());
-        System.out.println("Área: " + figura.calcularArea());
+        System.out.println("Area: " + figura.calcularArea());
         System.out.println("Perímetro: " + figura.calcularPerimetro());
     }
 }
 
 abstract class FiguraGeometrica implements calculos2d {
-    String nombre;
+    protected String nombre;
 
     public FiguraGeometrica(String nombre) {
         this.nombre = nombre;
     }
     public String getNombre() {
         return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public void mostrarInformacion() {
-        System.out.println("////////////////////////////////");
-        System.out.println("Figura: " + getNombre());
-        System.out.println("Área: " + calcularArea());
-        System.out.println("Perímetro: " + calcularPerimetro());
     }
 
 }
@@ -97,26 +88,26 @@ class Rectangulo extends FiguraGeometrica {
 class Triangulo extends FiguraGeometrica {
     private double lado1;
     private double lado2;
-    private double lado3;
+    private double altura;
 
-    public Triangulo(double lado1, double lado2, double lado3) throws FiguraInvalidaException {
+    public Triangulo(double lado1, double lado2, double altura) throws FiguraInvalidaException {
         super("Triángulo");
-        if (!esTrianguloValido(lado1, lado2, lado3)) {
+        if (!esTrianguloValido(lado1, lado2, altura)) {
             throw new FiguraInvalidaException("No se puede crear un triángulo con los lados proporcionados.");
         }
         this.lado1 = lado1;
         this.lado2 = lado2;
-        this.lado3 = lado3;
+        this.altura = altura;
     }
 
     @Override
     public double calcularArea() {
         // Implementa el cálculo del área del triángulo aquí
-        return 0;
+        return (lado1*lado2)/altura;
     }
     @Override
     public double calcularPerimetro() {
-        return lado1 + lado2 + lado3;
+        return lado1 + lado2 + altura;
     }
 
     private boolean esTrianguloValido(double a, double b, double c) {
